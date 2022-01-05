@@ -46,7 +46,6 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-	private var char1 Character = null;
 
 	override function create()
 	{
@@ -116,7 +115,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			//menuItem.screenCenter(X);
-			menuItem.x +=  250;
+			menuItem.x
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -127,13 +126,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
-		
-		char1 = new Character(800, -130, 'deathmatch_dad', true);
-		char1.setGraphicSize(std.int(char1.width * 0.8));
-		add(char1);
-		char1.visible = false;
-		
-		
+
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -187,21 +180,7 @@ class MainMenuState extends MusicBeatState
 
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
-		
-		
-		if (optionsShit[curSelected]  =='Story_mode')
-		{
-		     changeItem(-1);
-		     changeItem(1);
-		
-		     char1.dance();
-		     char1.updatehitbox();
-		     char1.visible = true;
-		} 
-		else
-		{
-		    char1.visible = false;
-		} 
+
 		if (!selectedSomethin)
 		{
 			if (controls.UI_UP_P)
